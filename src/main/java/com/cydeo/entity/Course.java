@@ -1,4 +1,4 @@
-package org.cydeo.entity;
+package com.cydeo.entity;
 
 import com.cydeo.enums.WeekDays;
 import lombok.AllArgsConstructor;

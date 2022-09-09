@@ -1,4 +1,4 @@
-package org.cydeo.enums;
+package com.cydeo.enums;
 
 public enum WeekDays {
 

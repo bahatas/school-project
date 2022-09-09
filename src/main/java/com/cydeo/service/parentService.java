@@ -1,4 +1,4 @@
-package org.cydeo.service;
+package com.cydeo.service;
 
 public class parentService {
 }

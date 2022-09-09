@@ -1,4 +1,4 @@
-package org.cydeo.database;
+package com.cydeo.database;
 
 import com.cydeo.entity.Course;
 import com.cydeo.entity.Parent;
