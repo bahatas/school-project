@@ -11,6 +11,7 @@ import java.util.List;
 
 public class Database {
 
+    //todo add more data for each userstories
     public static List<Course> courseList = new ArrayList<>(List.of(
             new Course(1,"English", 40, List.of(WeekDays.MONDAY, WeekDays.THURSDAY)),
             new Course(2,"Math",50, List.of(WeekDays.values())),
