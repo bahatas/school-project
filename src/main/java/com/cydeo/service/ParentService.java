@@ -1,30 +1,40 @@
 package com.cydeo.service;
 
+import com.cydeo.database.Database;
+import com.cydeo.entity.Parent;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public interface ParentService extends CRUDService {
+public class ParentService implements CRUDService {
     @Override
-    default Object findById(int id) {
-        return null;
+    public Object findById(int id) {
+        return Database.parentList.stream()
+                .filter(parent -> parent.getId()==id)
+                .findFirst().get();
     }
 
     @Override
-    default List findAll() {
-        return null;
+    public List findAll() {
+        return new ArrayList<>(Database.parentList);
     }
 
     @Override
-    default void save(Object o) {
-
-    }
-
-    @Override
-    default void update(Object o) {
+    public void save(Object o) {
+        Database.parentList.add((Parent) o); //upcasting
 
     }
 
     @Override
-    default void deleteById(Long id) {
+    public void update(Object o) {
+        Database.parentList.add(new Parent());
+
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        Database.parentList.removeIf(parent -> parent.getId()==id);
 
     }
 }
