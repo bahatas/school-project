@@ -5,19 +5,20 @@ import com.cydeo.entity.Course;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.cydeo.database.Database.courseList;
+
 public class CourseService implements CRUDService<Course>{
-
-    List<Course>courseList=new ArrayList<>();
-
 
     @Override
     public Course findById(int id) {
-        return courseList.get(id);
+        return courseList.stream()
+                .filter(p-> p.getId() == id)
+                .findAny().orElseThrow( () -> new RuntimeException("No such course"));
+
     }
 
     @Override
     public List<Course> findAll() {
-
         return new ArrayList<>(courseList);
 
     }
@@ -30,15 +31,17 @@ public class CourseService implements CRUDService<Course>{
 
     }
 
-    @Override
-    public void update(Course course) {
-        courseList.add(findById(course.id));
-
-    }
 
     @Override
     public void deleteById(Long id) {
-        courseList.remove(id);
+        courseList.removeIf(p -> p.getId() == id);
 
     }
-}
+    @Override
+    public void update(Course course) {
+        courseList.add(new Course());
+
+    }
+    }
+
+
