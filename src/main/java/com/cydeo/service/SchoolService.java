@@ -10,7 +10,8 @@ public class SchoolService implements CRUDService{
     @Override
     public Object findById(int id) {
         return Database.schoolList.stream()
-                .filter(school -> school.getId()==(id));
+                .filter(school -> school.getId()==(id))
+                .collect(Collectors.toList());
         //comment
     }
 
@@ -29,8 +30,10 @@ public class SchoolService implements CRUDService{
     @Override
     public void update(Object o) {
         Object replace=Database.schoolList.stream()
-                .filter(school -> school.equals(o));
-        Database.schoolList.set(findAll().indexOf(replace), (School) o);
+                .filter(school -> school.getId()==((School) o).getId())
+                        .findFirst().get();
+
+        Database.schoolList.set(Database.schoolList.indexOf(replace), (School) o);
 
     }
 
