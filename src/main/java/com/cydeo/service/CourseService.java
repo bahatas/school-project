@@ -39,7 +39,11 @@ public class CourseService implements CRUDService<Course>{
     }
     @Override
     public void update(Course course) {
-        courseList.add(new Course());
+        Course replace = courseList.stream()
+                .filter(p -> p.getId() == course.getId())
+                .findFirst().get();
+
+        courseList.set(courseList.indexOf(replace), course);
 
     }
     }
