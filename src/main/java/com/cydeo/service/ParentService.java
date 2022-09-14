@@ -28,7 +28,10 @@ public class ParentService implements CRUDService {
 
     @Override
     public void update(Object o) {
-        Database.parentList.add(new Parent());
+        Object replace = Database.parentList.stream()
+                .filter(parent -> parent.getId()==((Parent)o).getId())
+                .findFirst().get();
+                Database.parentList.set(Database.parentList.indexOf(replace), (Parent)o);
 
     }
 
